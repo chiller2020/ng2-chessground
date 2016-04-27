@@ -39,7 +39,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.ts$/, exclude: [/\.spec\.ts$/, 'node_modules'], loader: 'ts' },
+      { test: /\.ts$/, exclude: [/\.spec\.ts$/, 'node_modules'], loader: 'ts' },{ test: /\.css$/, loader: "style!css" },
     ],
 
     noParse: [/angular2\/bundles\/.+/, /zone\.js\/dist\/.+/]

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const config = require('./webpack.config.js');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 config.output.filename = '[name].[chunkhash:8].js';
 config.devtool = 'hidden-source-map';
@@ -16,7 +17,10 @@ config.plugins.push(
     mangle: { screw_ie8 : true },
     compress : { screw_ie8 : true },
     comments: false
-  })
+  }),
+   new CopyWebpackPlugin([
+            // {output}/file.txt
+            { from: 'src/assets', to: 'assets'  }])
 );
 
 module.exports = config;
