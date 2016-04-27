@@ -1,9 +1,22 @@
-#Angular2 Webpack Polyfill
-A simple starter example showing Angular2 bundled using webpack with polyfill.io service.
+#chessground-ng2wrap
+
+Angular 2 wrapper for https://github.com/ornicar/chessground
+
+Build environment is based on https://github.com/CaptainCodeman/angular2-webpack-polyfill
+
+Work in early progress.
 
 ## Setup
 
     npm install
+    
+    Note! chessground has to be built after install
+    
+    cd node_modules_chessground
+    
+    npm install
+    
+    gulp
 
 Run dev server
 
@@ -12,22 +25,6 @@ Run dev server
 Build deployment
 
     npm run build
-
-## Polyfill service
-The polyfill downloaded is based on the browser user agent. The lack of Intl support in Safari
-is the reason for it being the largest (currently used in number pipe formatting). Using the
-separate polyfill service prevents other browser users from having to pay the download price
-for Safari support.
-
-### Polyfill download size (compressed)
-
-Browser | Size
---- | ---
-Chrome | 911 bytes
-Firefox | 0.32 Kb
-Safari | 15.11 Kb
-Edge | 1.12 Kb
-IE 11 | 2.3 Kb
 
 ## IE Fix
 
