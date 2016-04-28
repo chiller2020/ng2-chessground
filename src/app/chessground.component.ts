@@ -15,7 +15,7 @@ export class ChessGroundComponent implements OnInit{
     ngOnInit()
     {
         var options = {
-    orientation: 'white'
+    orientation: 'white' 
     };
     
     
