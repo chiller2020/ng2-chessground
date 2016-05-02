@@ -14,7 +14,6 @@ export class ChessGroundComponent implements AfterViewInit {
 
     ground: any;
     @Input() pieces: string = 'staunton';
-    @Input() is3d: boolean;
     @Input() board: string = 'wood';
     @Input() muuid: string = uuid.v4(); 
     @Input() width: string = '100%';
