@@ -7,8 +7,8 @@ import {AfterViewInit} from 'angular2/core'
 
 @Component({
     selector: 'chessground',
-    template: `<div [style.width]="width" [style.height]="height"><div [id]="muuid"  [style.width]="width" [style.height]="height" [ngClass]="[pieces,board]"></div>`,
-
+    template: `<div [id]="muuid"  [style.width]="width" [style.height]="height" [ngClass]="[pieces,board]"></div>`
+    
 })
 export class ChessGroundComponent implements AfterViewInit {
 
@@ -16,11 +16,11 @@ export class ChessGroundComponent implements AfterViewInit {
     @Input() pieces: string = 'staunton';
     @Input() board: string = 'wood';
     @Input() muuid: string = uuid.v4(); 
-    @Input() width: string = '100%';
-    @Input() height: string = '100%';
+    @Input() width: string = '100%'; 
+    @Input() height: string = '100%'; 
     
     ngAfterViewInit() {   
-        var options = {
+        var options = { 
             orientation: 'white'  
         };
 
@@ -33,3 +33,4 @@ export class ChessGroundComponent implements AfterViewInit {
     };
 
 }
+ 
