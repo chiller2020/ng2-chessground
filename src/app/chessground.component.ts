@@ -1,8 +1,8 @@
 
 var Chessground = require('chessground');
 var uuid = require('uuid');
-import {Component, Input, ElementRef} from 'angular2/core';
-import {AfterViewInit} from 'angular2/core'
+import {Component, Input, ElementRef} from '@angular/core';
+import {AfterViewInit} from '@angular/core'
 
 
 @Component({

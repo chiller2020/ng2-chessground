@@ -1,6 +1,6 @@
-import "angular2/platform/browser";
-import "angular2/core";
-import "angular2/http";
+import "@angular/platform-browser";
+import "@angular/core";
+import "@angular/http";
 
 // if we want everything ...
 // import 'rxjs';
