@@ -1,6 +1,5 @@
 
-var Chessground = require('chessground');
-var uuid = require('uuid');
+
 import {Component, Input, ElementRef} from '@angular/core';
 import {AfterViewInit} from '@angular/core'
 
@@ -12,10 +11,13 @@ import {AfterViewInit} from '@angular/core'
 })
 export class ChessGroundComponent implements AfterViewInit {
 
+    Chessground = require('chessground');
+    uuid = require('uuid');
+
     ground: any;
     @Input() pieces: string = 'staunton';
     @Input() board: string = 'wood';
-    @Input() muuid: string = uuid.v4();
+    @Input() muuid: string = this.uuid.v4();
     @Input() width: string = '100%';
     @Input() height: string = '100%';
 
@@ -25,7 +27,7 @@ export class ChessGroundComponent implements AfterViewInit {
             orientation: 'white'
         };
 
-        this.ground = Chessground(document.getElementById(this.muuid), options);
+        this.ground = this.Chessground(document.getElementById(this.muuid), options);
     };
 
     getGround() {
@@ -38,7 +40,6 @@ export class ChessGroundComponent implements AfterViewInit {
     }
 
     constructor() {
-
 
     };
 
