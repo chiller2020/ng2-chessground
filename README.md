@@ -10,15 +10,7 @@ Work in early progress.
 
     npm install
     
-    Note! chessground has to be built after install
-    
-    cd node_modules_chessground
-    
-    npm install
-    
-    gulp
-
-Run dev server
+   Run dev server
 
     npm start
 
