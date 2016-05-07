@@ -12,9 +12,6 @@ import {ChessGroundComponent} from './chessground.component';
 
 })
 export class ChessGroundEditorComponent  {
-
-   
-
    
     constructor() {
 
