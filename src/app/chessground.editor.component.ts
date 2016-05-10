@@ -12,26 +12,26 @@ var drag = require('chessground').drag;
 @Component({
     selector: 'chessground-editor',
     template: `<chessground (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)"></chessground>`,
-    directives:[ChessGroundComponent],
-    providers:[ChessGroundControlService]
+    directives: [ChessGroundComponent],
+    providers: [ChessGroundControlService]
 
 })
 export class ChessGroundEditorComponent implements AfterViewInit {
-   
+
     ground: any;
     dragstarted: boolean = false;
     dragKey: any;
-    
+
     constructor(private cgctrl: ChessGroundControlService) {
 
     }
-    
+
     ngAfterViewInit() {
-    // Component views are initialized
-      this.ground = this.cgctrl.getGround();
+        // Component views are initialized
+        this.ground = this.cgctrl.getGround();
     }
-    
-     findfunc(k) {
+
+    findfunc(k) {
         return !this.ground.data.pieces[k];
 
 
@@ -39,16 +39,15 @@ export class ChessGroundEditorComponent implements AfterViewInit {
 
     onMouseLeave(event) {
     }
-     onMouseEnter(event) {
+    onMouseEnter(event) {
 
-         
+
 
         if (this.dragstarted)
             return;
 
         this.dragstarted = true;
 
-        console.log(event);
         var role = 'king';
         var color = 'white';
 
@@ -71,12 +70,12 @@ export class ChessGroundEditorComponent implements AfterViewInit {
         console.log(obj);
 
         var bounds = this.ground.data.bounds();
-        
+
         console.log('Bounds');
         console.log(bounds);
 
-        var squareSize = bounds.width/8 ;// = event.target.parentNode.parentNode.getBoundingClientRect();
-       
+        var squareSize = bounds.width / 8;// = event.target.parentNode.parentNode.getBoundingClientRect();
+
 
         var rel = [
             (coords[0] - 1) * squareSize + bounds.left,
@@ -98,8 +97,8 @@ export class ChessGroundEditorComponent implements AfterViewInit {
         drag.processDrag(this.ground.data);
 
     };
-    
-   //<div [id]="muuid" (window:mousemove)=onWindowMouseMove($event) (mouseleave)="onMouseLeave($event)" (mouseout)="onMouseOut($event)" (mouseenter)="onMouseEnter($event)"   [style.width]="width" [style.height]="height" [ngClass]="[pieces,board]"></div> 
-    
-    
+
+    //<div [id]="muuid" (window:mousemove)=onWindowMouseMove($event) (mouseleave)="onMouseLeave($event)" (mouseout)="onMouseOut($event)" (mouseenter)="onMouseEnter($event)"   [style.width]="width" [style.height]="height" [ngClass]="[pieces,board]"></div> 
+
+
 }
