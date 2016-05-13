@@ -1,9 +1,10 @@
 
 
-import {Component, Input, ElementRef} from '@angular/core';
+import {Component, Input, ElementRef,ViewChild} from '@angular/core';
 import {AfterViewInit} from '@angular/core'
 import {ChessGroundComponent} from './chessground.component';
 import { ChessGroundControlService } from './chessground-control.service';
+import {ChessGroundSparePiecesComponent} from './chessground-sparepieces.component'
 
 var _ = require('lodash');
 var util = require('chessground').util;
@@ -11,38 +12,69 @@ var drag = require('chessground').drag;
 
 @Component({
     selector: 'chessground-editor',
-    template: `<chessground (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)"></chessground>`,
-    directives: [ChessGroundComponent],
+    template: `
+               
+                <chessground-sparepieces  [color]="'black'" [width]="sparepieceWidth" [height]="sparepieceHeight"></chessground-sparepieces>
+                  <chessground [pieces]="pieces"></chessground>
+                <chessground-sparepieces [width]="sparepieceWidth" [height]="sparepieceHeight"></chessground-sparepieces>
+               
+                     
+              `,
+    directives: [ChessGroundComponent,ChessGroundSparePiecesComponent],
     providers: [ChessGroundControlService]
 
 })
+
 export class ChessGroundEditorComponent implements AfterViewInit {
 
-    ground: any;
-    dragstarted: boolean = false;
-    dragKey: any;
+@ViewChild(ChessGroundSparePiecesComponent) sparePieces :ChessGroundSparePiecesComponent;
+
+    private ground: any;
+    private dragstarted: boolean = false;
+    private dragKey: any;
+    
+    pieces: string ="merida";
+
+    sparepieceWidth: string;
+    sparepieceHeight: string;
 
     constructor(private cgctrl: ChessGroundControlService) {
 
     }
-
+    
+    
+    startDrag(event)
+    {   
+         this.handoverSparePiece(event);
+    }
+    
     ngAfterViewInit() {
         // Component views are initialized
         this.ground = this.cgctrl.getGround();
+        
+        var clientWidth =  this.cgctrl.getWidthInPx();
+        var clientHeight = this.cgctrl.getHeightInPx();
+        
+        this.sparepieceWidth = clientWidth.toString();
+        
+        this.sparepieceHeight =  (clientHeight/8).toString();
+             
+           
     }
 
-    findfunc(k) {
+    findFirstEmptySquare(k) {
         return !this.ground.data.pieces[k];
-
 
     };
 
     onMouseLeave(event) {
     }
     onMouseEnter(event) {
-
-
-
+      this.handoverSparePiece(event);
+    };
+    handoverSparePiece(event)
+    {
+  
         if (this.dragstarted)
             return;
 
@@ -53,7 +85,7 @@ export class ChessGroundEditorComponent implements AfterViewInit {
 
         var pieces = this.ground.data.pieces;
 
-        var key = _.find(util.allKeys, this.findfunc.bind(this));
+        var key = _.find(util.allKeys, this.findFirstEmptySquare.bind(this));
         console.log(key);
 
         this.dragKey = key;
@@ -74,14 +106,13 @@ export class ChessGroundEditorComponent implements AfterViewInit {
         console.log('Bounds');
         console.log(bounds);
 
-        var squareSize = bounds.width / 8;// = event.target.parentNode.parentNode.getBoundingClientRect();
-
+        //assume chessboard is 8*8 squares
+        var squareSize = bounds.width / 8;
 
         var rel = [
             (coords[0] - 1) * squareSize + bounds.left,
             (8 - coords[1]) * squareSize + bounds.top
         ];
-
 
         this.ground.data.draggable.current = {
             orig: key,
@@ -89,16 +120,12 @@ export class ChessGroundEditorComponent implements AfterViewInit {
             rel: rel,
             epos: [event.clientX, event.clientY],
             pos: [event.clientX - rel[0], event.clientY - rel[1]],
-            //pos: [event.clientX, event.clientY] ,
             dec: [-squareSize / 2, -squareSize / 2],
             bounds: bounds,
             started: true
         };
         drag.processDrag(this.ground.data);
-
-    };
-
-    //<div [id]="muuid" (window:mousemove)=onWindowMouseMove($event) (mouseleave)="onMouseLeave($event)" (mouseout)="onMouseOut($event)" (mouseenter)="onMouseEnter($event)"   [style.width]="width" [style.height]="height" [ngClass]="[pieces,board]"></div> 
-
+        
+    }
 
 }
