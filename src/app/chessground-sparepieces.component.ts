@@ -9,11 +9,7 @@ import {ChessGroundPieceComponent} from './chessground-piece.component'
                padding-left:0;
              }
              
-             { 
-               height:140%;
-               width:100%; 
-               top:-25% 
-             }
+            
              
     `],
     template:`    <div class="container" [style.width.px]="width" [style.height.px]="height" style="background-color:red;">
