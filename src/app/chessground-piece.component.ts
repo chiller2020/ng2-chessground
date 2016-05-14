@@ -6,6 +6,16 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
     styles:[`.container{
                display: flex;
                padding-left:0;
+               -webkit-user-drag: none;
+               -khtml-user-drag: none;
+               -moz-user-drag: none;
+               -o-user-drag: none;
+               user-drag: none;
+               -webkit-user-select: none;
+               -moz-user-select: none;
+               -ms-user-select: none;
+               user-select: none;
+
              }
              .piece{
                width:inherit;
@@ -13,6 +23,15 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
                position:relative;
                display:inline-block;
                left:0%;
+               -webkit-user-drag: none;
+               -khtml-user-drag: none;
+               -moz-user-drag: none;
+               -o-user-drag: none;
+               user-drag: none;
+               -webkit-user-select: none;
+               -moz-user-select: none;
+               -ms-user-select: none;
+               user-select: none; 
              }
              .is3d
              { 
@@ -22,13 +41,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
              }
              
     `],
-    template:`    
-                    
-                    <div [ngClass]="[pieces]" [style.width.px]="height" [style.height.px]="height">
-                      <piece  [style.width.px]="height" [style.height.px]="height" [ngClass]="[color,piece]" class="piece"></piece>
-                    </div>
-                    
-             `, 
+    template:`<div [ngClass]="[pieces]" [style.width.px]="height" [style.height.px]="height" class="piece">
+                <piece  [style.width.px]="height" [style.height.px]="height" [ngClass]="[color,piece]" class="piece"></piece>
+              </div>`, 
     
 })
 export class ChessGroundPieceComponent{
@@ -36,16 +51,12 @@ export class ChessGroundPieceComponent{
   @Input() width: number = 0;
   @Input() height: number =0;
   @Input() pieces: string = 'merida';
-  @Input() piece:string ='king';
+  @Input() piece:string ='';
   @Input() color: string = 'black';
   @Input() is3d: boolean = false;
-  
-  @Output() mousedownonpiece: EventEmitter<any> = new EventEmitter();
   
   constructor(){
     
   }
-  
-  
-  
+ 
 }
