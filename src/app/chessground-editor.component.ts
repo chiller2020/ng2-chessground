@@ -1,6 +1,6 @@
 
 
-import {Component, Input, ElementRef,ViewChild} from '@angular/core';
+import {Component, Input, ElementRef, ViewChild} from '@angular/core';
 import {AfterViewInit} from '@angular/core'
 import {ChessGroundComponent} from './chessground.component';
 import { ChessGroundControlService } from './chessground-control.service';
@@ -12,54 +12,63 @@ var drag = require('chessground').drag;
 
 @Component({
     selector: 'chessground-editor',
-    template: `
-               
-                <chessground-sparepieces  [color]="'black'" [width]="sparepieceWidth" [height]="sparepieceHeight"></chessground-sparepieces>
-                  <chessground [pieces]="pieces"></chessground>
-                <chessground-sparepieces [width]="sparepieceWidth" [height]="sparepieceHeight"></chessground-sparepieces>
-               
-                     
-              `,
-    directives: [ChessGroundComponent,ChessGroundSparePiecesComponent],
+    template: ` <chessground-sparepieces  
+                  (mousedownonpiece)="onMouseDownOnPiece($event)" 
+                  [color]="spareupcolour"
+                  [width]="sparepieceWidth"
+                  [height]="sparepieceHeight"
+                >
+                </chessground-sparepieces>
+                  <chessground [pieces]="pieces" [orientation]="orientation"></chessground>
+                <chessground-sparepieces 
+                  (mousedownonpiece)="onMouseDownOnPiece($event)" 
+                  [color]="sparedowncolour" 
+                  [width]="sparepieceWidth" 
+                  [height]="sparepieceHeight"
+                >
+                </chessground-sparepieces>`,
+    directives: [ChessGroundComponent, ChessGroundSparePiecesComponent],
     providers: [ChessGroundControlService]
 
 })
 
 export class ChessGroundEditorComponent implements AfterViewInit {
 
-@ViewChild(ChessGroundSparePiecesComponent) sparePieces :ChessGroundSparePiecesComponent;
+    @Input() orientation: string = 'white';
 
     private ground: any;
-    private dragstarted: boolean = false;
     private dragKey: any;
-    
-    pieces: string ="merida";
-
-    sparepieceWidth: string;
-    sparepieceHeight: string;
+    private pieces: string = "merida";
+    private sparepieceWidth: string;
+    private sparepieceHeight: string;
+    private spareupcolour: string = 'black';
+    private sparedowncolour: string = 'white';
 
     constructor(private cgctrl: ChessGroundControlService) {
 
     }
-    
-    
-    startDrag(event)
-    {   
-         this.handoverSparePiece(event);
+
+    onMouseDownOnPiece(event) {
+        var piece = { role: event.role, color: event.color };
+        this.handoverSparePiece(event.event, piece);
     }
-    
+
     ngAfterViewInit() {
         // Component views are initialized
         this.ground = this.cgctrl.getGround();
-        
-        var clientWidth =  this.cgctrl.getWidthInPx();
+
+        var clientWidth = this.cgctrl.getWidthInPx();
         var clientHeight = this.cgctrl.getHeightInPx();
-        
-        this.sparepieceWidth = clientWidth.toString();
-        
-        this.sparepieceHeight =  (clientHeight/8).toString();
-             
-           
+
+        this.sparepieceWidth = ((clientWidth / 8) * 6).toString();
+
+        this.sparepieceHeight = (clientHeight / 8).toString();
+
+        if (this.orientation == 'black') {
+            this.spareupcolour = 'white';
+            this.sparedowncolour = 'black';
+        }
+
     }
 
     findFirstEmptySquare(k) {
@@ -67,22 +76,7 @@ export class ChessGroundEditorComponent implements AfterViewInit {
 
     };
 
-    onMouseLeave(event) {
-    }
-    onMouseEnter(event) {
-      this.handoverSparePiece(event);
-    };
-    handoverSparePiece(event)
-    {
-  
-        if (this.dragstarted)
-            return;
-
-        this.dragstarted = true;
-
-        var role = 'king';
-        var color = 'white';
-
+    handoverSparePiece(event, piece) {
         var pieces = this.ground.data.pieces;
 
         var key = _.find(util.allKeys, this.findFirstEmptySquare.bind(this));
@@ -92,10 +86,6 @@ export class ChessGroundEditorComponent implements AfterViewInit {
 
         var coords = util.key2pos(this.ground.data.orientation === 'white' ? key : util.invertKey(key));
 
-        var piece = {
-            role: role,
-            color: color
-        };
         var obj = {};
         obj[key] = piece;
         this.ground.setPieces(obj);
@@ -125,7 +115,7 @@ export class ChessGroundEditorComponent implements AfterViewInit {
             started: true
         };
         drag.processDrag(this.ground.data);
-        
+
     }
 
 }
