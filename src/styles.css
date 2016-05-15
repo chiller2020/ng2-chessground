@@ -1,4 +1,10 @@
 html,body{
-  width:640px;
+  width:100%;
+  height:100%;
+}
+
+.myapp
+{
+  width: 640px;
   height:640px;
 }
