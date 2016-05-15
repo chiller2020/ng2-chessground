@@ -60,9 +60,9 @@ export class ChessGroundEditorComponent implements AfterViewInit {
         var clientWidth = this.cgctrl.getWidthInPx();
         var clientHeight = this.cgctrl.getHeightInPx();
 
-        this.sparepieceWidth = ((clientWidth / 8) * 6).toString();
+        this.sparepieceWidth = ((clientWidth / 18) * 6).toString();
 
-        this.sparepieceHeight = (clientHeight / 8).toString();
+        this.sparepieceHeight = (clientHeight / 18).toString();
 
         if (this.orientation == 'black') {
             this.spareupcolour = 'white';
