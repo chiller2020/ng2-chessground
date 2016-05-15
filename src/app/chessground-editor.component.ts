@@ -48,6 +48,7 @@ export class ChessGroundEditorComponent implements AfterViewInit {
 
     }
 
+
     onMouseDownOnPiece(event) {
         var piece = { role: event.role, color: event.color };
         this.handoverSparePiece(event.event, piece);
