@@ -39,12 +39,14 @@ export class ChessGroundComponent implements AfterViewInit {
 
     }
 
+    onChangeDrawable(shapes) {
+    }
+
     onMove(orig, dest, capturedPiece) {
 
 
     }
     onSelect(key) {
-
 
     }
 
@@ -62,14 +64,16 @@ export class ChessGroundComponent implements AfterViewInit {
                 showGhost: true,      // show ghost of piece being dragged
             },
             drawable: {
-                enabled: true         // enable SVG circle and arrow drawing on the board
+                enabled: true,
+                onChange: this.onChangeDrawable
+                // enable SVG circle and arrow drawing on the board
             },
             events: {
-                change: function () { this.onChange() }.bind(this),   // called after the situation changes on the board
+                change: this.onChange,   // called after the situation changes on the board
                 // called after a piece has been moved.
                 // capturedPiece is null or like {color: 'white', 'role': 'queen'}
-                move: function (orig, dest, capturedPiece) { this.onMove(orig, dest, capturedPiece) }.bind(this),
-                select: function (key) { this.onSelect(key) }.bind(this) // called when a square is selected
+                move: this.onMove,
+                select: this.onSelect // called when a square is selected
             },
             movable: {
                 free: true,           // all moves are valid - board editor
