@@ -7,7 +7,7 @@ export class ChessGroundControlService {
   Chessground = require('chessground');
 
   ground: any;
-  
+
   id: string;
 
   constructor() {
@@ -15,7 +15,7 @@ export class ChessGroundControlService {
   }
 
   init(id: string, options: any) {
-    
+
     this.id = id;
     this.ground = this.Chessground(document.getElementById(id), options);
 
@@ -29,22 +29,17 @@ export class ChessGroundControlService {
   getGround() {
     return this.ground;
   }
-  
-  getId()
-  {
+
+  getId() {
     return this.id;
   }
-  
-  getWidthInPx()
-  {
-     return document.getElementById(this.id).clientWidth
+
+  getWidthInPx() {
+    return document.getElementById(this.id).clientWidth
   }
-  
-  getHeightInPx()
-  {
-    return document.getElementById(this.id).clientHeight 
+
+  getHeightInPx() {
+    return document.getElementById(this.id).clientHeight
   }
-    
-  
 
 }

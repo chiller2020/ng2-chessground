@@ -6,16 +6,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
     styles:[`.container{
                display: flex;
                padding-left:0;
-               -webkit-user-drag: none;
-               -khtml-user-drag: none;
-               -moz-user-drag: none;
-               -o-user-drag: none;
-               user-drag: none;
-               -webkit-user-select: none;
-               -moz-user-select: none;
-               -ms-user-select: none;
-               user-select: none;
-
+              
              }
              .piece{
                width:inherit;
@@ -23,15 +14,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
                position:relative;
                display:inline-block;
                left:0%;
-               -webkit-user-drag: none;
-               -khtml-user-drag: none;
-               -moz-user-drag: none;
-               -o-user-drag: none;
-               user-drag: none;
-               -webkit-user-select: none;
-               -moz-user-select: none;
-               -ms-user-select: none;
-               user-select: none; 
+              
              }
              .is3d
              { 

@@ -39,6 +39,7 @@ export class ChessGroundEditorComponent implements AfterViewInit {
     private ground: any;
     private dragKey: any;
     private pieces: string = "merida";
+
     private sparepieceWidth: string;
     private sparepieceHeight: string;
     private spareupcolour: string = 'black';

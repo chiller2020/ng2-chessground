@@ -26,7 +26,6 @@ export class ChessGroundPgnViewerComponent implements AfterViewInit {
   boardheight:string = '640px';
   private pieces: string = "merida";
   orientation:string="white";
-  
 
   constructor(private cgctrl: ChessGroundControlService, private chessjsservice: ChessJsService) {
   

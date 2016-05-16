@@ -25,5 +25,4 @@ export class ChessJsService {
     getSharedInstance() {
         return this.chess;
     }
-
 } 
