@@ -16,6 +16,7 @@
     "@angular/platform-browser": "^2.0.0-rc.1",
     "@angular/platform-browser-dynamic": "^2.0.0-rc.1",
     "chessground": "github:ornicar/chessground#v3.6.2",
+    "chess.js": "github:jhlywa/chess.js",
     "es6-shim": "^0.35.0",
     "lodash": "^4.11.2",
     "reflect-metadata": "^0.1.3",
