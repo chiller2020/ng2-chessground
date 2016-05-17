@@ -6,7 +6,7 @@ import {Component, Input,Output,OnInit,EventEmitter} from '@angular/core';
   selector: 'glyphbutton',
   styles:[`.block{display:inline-flex;}`],
   template: `
-             <button  (click)="onClick" [style.width]="width" [style.height]="height"><i [style.font-size]="fontsize" class="block glyphicon" [ngClass]="[iconclass]"></i></button>`,
+             <button  (click)="onClick($event)" [style.width]="width" [style.height]="height"><i [style.font-size]="fontsize" class="block glyphicon" [ngClass]="[iconclass]"></i></button>`,
 
 })
 export class GlyphButtonComponent implements OnInit {
@@ -20,15 +20,15 @@ export class GlyphButtonComponent implements OnInit {
   @Input() height: string = "50px";
   @Input() fontsize:string ="200%"
   
-  @Output() click: EventEmitter<any> = new EventEmitter();
+  @Output() innerclick: EventEmitter<any> = new EventEmitter();
   
   ngOnInit() {
     this.iconclass = this.prestring + this.name;
   }
   
-  onClick()
+  onClick($event)
   {
-    this.click.emit({name:this.name});
+    this.innerclick.emit({name:this.name});
   }
 
 }

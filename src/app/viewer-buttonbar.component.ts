@@ -1,6 +1,7 @@
 
-import {Component,Input} from '@angular/core';
+import {Component,Input,Output,EventEmitter} from '@angular/core';
 import {GlyphButtonComponent} from './glyphbutton.component'
+
 
 
 @Component({
@@ -12,12 +13,12 @@ import {GlyphButtonComponent} from './glyphbutton.component'
         
     }`],
     template: `<div [style.width.px]="width" class="container">
-                  <glyphbutton [name]="'step-backward'"></glyphbutton>
-                  <glyphbutton [name]="'fast-backward'"></glyphbutton>
-                  <glyphbutton [name]="'fast-forward'"></glyphbutton>
-                  <glyphbutton [name]="'step-forward'"></glyphbutton>
-                  <glyphbutton [name]="'play'"></glyphbutton>
-                  <glyphbutton [name]="'stop'"></glyphbutton>
+                  <glyphbutton (click)="onClick($event,'sb')" [name]="'step-backward'"></glyphbutton>
+                  <glyphbutton (click)="onClick($event,'fb')" [name]="'fast-backward'"></glyphbutton>
+                  <glyphbutton (click)="onClick($event,'ff')" [name]="'fast-forward'"></glyphbutton>
+                  <glyphbutton (click)="onClick($event,'sf')" [name]="'step-forward'"></glyphbutton>
+                  <glyphbutton (click)="onClick($event,'p')" [name]="'play'"></glyphbutton>
+                  <glyphbutton (click)="onClick($event,'s')" [name]="'stop'"></glyphbutton>
               </div>`,
     directives: [GlyphButtonComponent]
 })
@@ -25,6 +26,14 @@ export class ViewerButtonBar {
     
     @Input() width: number = 300;
     @Input() height: number = 50;  
+    
+    @Output() do: EventEmitter<any> = new EventEmitter();
+    
+    onClick(event,doval:string)
+    {
+        var value = { do: doval };
+        this.do.emit(value);      
+    }
 
     
 }
