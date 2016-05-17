@@ -22,7 +22,7 @@ import {GlyphButtonComponent} from './glyphbutton.component'
               </div>`,
     directives: [GlyphButtonComponent]
 })
-export class ViewerButtonBar { 
+export class ViewerButtonBarComponent { 
     
     @Input() width: number = 300;
     @Input() height: number = 50;  
