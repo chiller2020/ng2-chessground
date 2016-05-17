@@ -4,6 +4,7 @@ import {ChessGroundComponent} from './chessground.component';
 import {GlyphButtonComponent} from './glyphbutton.component';
 import { ChessGroundControlService } from './chessground-control.service';
 import { ViewerButtonBar } from './viewer-buttonbar.component';
+import { PgnInputText } from './pgninputtext.component';
 import { ChessJsService } from './chessjs.service';
 
 @Component({
@@ -11,9 +12,10 @@ import { ChessJsService } from './chessjs.service';
   styles: [` `],
   template: `
                 <chessground [width]="boardwidth" [height]="boardheight" [pieces]="pieces" [orientation]="orientation"></chessground>
-                <viewer-buttonbar></viewer-buttonbar>
+                <viewer-buttonbar (do)="onButtonBarDo($event)" ></viewer-buttonbar>
+                <pgninputtext></pgninputtext>
              `,
-  directives: [ChessGroundComponent,ViewerButtonBar],
+  directives: [ChessGroundComponent,ViewerButtonBar,PgnInputText],
   providers: [ChessGroundControlService, ChessJsService]
 
 })
@@ -54,4 +56,10 @@ export class ChessGroundPgnViewerComponent implements AfterViewInit {
      console.log(this.chessjs.history({ verbose: true }));
        
   }
+  
+  onButtonBarDo(event)
+  {
+    console.log(event);
+  }
+  
 }
