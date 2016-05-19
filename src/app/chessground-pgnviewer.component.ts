@@ -6,6 +6,7 @@ import { ChessGroundControlService } from './chessground-control.service';
 import { ViewerButtonBarComponent } from './viewer-buttonbar.component';
 import { PgnInputTextComponent } from './pgninputtext.component';
 import { ChessJsService } from './chessjs.service';
+import { PgnService } from './pgn.service';
 
 @Component({
   selector: 'chessground-pgnviewer',
@@ -17,7 +18,7 @@ import { ChessJsService } from './chessjs.service';
                 
              `,
   directives: [ChessGroundComponent,ViewerButtonBarComponent,PgnInputTextComponent],
-  providers: [ChessGroundControlService, ChessJsService]
+  providers: [ChessGroundControlService, ChessJsService,PgnService]
 
 })
 export class ChessGroundPgnViewerComponent implements AfterViewInit {
@@ -33,21 +34,22 @@ export class ChessGroundPgnViewerComponent implements AfterViewInit {
 
   
 
-  constructor(private cgctrl: ChessGroundControlService, private chessjsservice: ChessJsService) {
+  constructor(private cgctrl: ChessGroundControlService, private chessjsservice: ChessJsService, private pgnservice: PgnService) {
   
   }
   
   onPgnSubmit(event)
   {
     
-     this.chessjs.load_pgn(event.pgn);
-     console.log(this.chessjs.history({ verbose: true }));
+    let pgn: string = this.pgnservice.cleanUpPgn(event.pgn);
+    this.chessjs.load_pgn(pgn);
+    console.log(pgn);
+    console.log(this.chessjs.history({ verbose: true }));
   }
 
   ngAfterViewInit(){
      this.chessjs=this.chessjsservice.getNewInstance(); 
     
-       
   }
   
   onButtonBarDo(event)
