@@ -1,17 +1,19 @@
 
 import {Component} from '@angular/core';
-import {ChessGroundEditorComponent} from './chessground-editor.component'
-import {ChessGroundPgnViewerComponent} from './chessground-pgnviewer.component'
+import {BoardEditorComponent} from './boardeditor.component'
+import {PgnViewerComponent} from './pgnviewer.component'
 
 
 @Component({
     selector: 'app',
-    template: ` <chessground-pgnviewer [style.width]="'100%'" [style.height]="'100%'"></chessground-pgnviewer>
+    styles: [`
+`],
+    template: ` <pgnviewer [style.width]="'100%'" [style.height]="'100%'"></pgnviewer>
                 `,
-    directives: [ChessGroundPgnViewerComponent, ChessGroundEditorComponent]
+    directives: [PgnViewerComponent, BoardEditorComponent]
 })
 export class AppComponent { }
 
 
 
-//`<chessground-editor [style.width]="'100%'" [style.height]="'100%'"></chessground-editor>`
+//`<boardeditor [style.width]="'100%'" [style.height]="'100%'"></boardeditor>`

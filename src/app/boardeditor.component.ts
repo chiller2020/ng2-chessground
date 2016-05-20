@@ -3,36 +3,36 @@
 import {Component, Input, ElementRef, ViewChild} from '@angular/core';
 import {AfterViewInit} from '@angular/core'
 import {ChessGroundComponent} from './chessground.component';
-import { ChessGroundControlService } from './chessground-control.service';
-import {ChessGroundSparePiecesComponent} from './chessground-sparepieces.component'
+import { ChessGroundService } from './chessground.service';
+import {SparePiecesComponent} from './sparepieces.component'
 
 var _ = require('lodash');
 var util = require('chessground').util;
 var drag = require('chessground').drag;
 
 @Component({
-    selector: 'chessground-editor',
-    template: ` <chessground-sparepieces  
+    selector: 'boardeditor',
+    template: ` <sparepieces  
                   (mousedownonpiece)="onMouseDownOnPiece($event)" 
                   [color]="spareupcolour"
                   [width]="sparepieceWidth"
                   [height]="sparepieceHeight"
                 >
-                </chessground-sparepieces>
+                </sparepieces>
                   <chessground [pieces]="pieces" [orientation]="orientation"></chessground>
-                <chessground-sparepieces 
+                <sparepieces 
                   (mousedownonpiece)="onMouseDownOnPiece($event)" 
                   [color]="sparedowncolour" 
                   [width]="sparepieceWidth" 
                   [height]="sparepieceHeight"
                 >
-                </chessground-sparepieces>`,
-    directives: [ChessGroundComponent, ChessGroundSparePiecesComponent],
-    providers: [ChessGroundControlService]
+                </sparepieces>`,
+    directives: [ChessGroundComponent, SparePiecesComponent],
+    providers: [ChessGroundService]
 
 })
 
-export class ChessGroundEditorComponent implements AfterViewInit {
+export class BoardEditorComponent implements AfterViewInit {
 
     @Input() orientation: string = 'white';
 
@@ -45,11 +45,11 @@ export class ChessGroundEditorComponent implements AfterViewInit {
     private spareupcolour: string = 'black';
     private sparedowncolour: string = 'white';
 
-    constructor(private cgctrl: ChessGroundControlService) {
+    constructor(private cgctrl: ChessGroundService) {
 
     }
 
-
+ 
     onMouseDownOnPiece(event) {
         var piece = { role: event.role, color: event.color };
         this.handoverSparePiece(event.event, piece);

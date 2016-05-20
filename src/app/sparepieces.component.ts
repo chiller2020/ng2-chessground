@@ -3,7 +3,7 @@ import {ChessGroundPieceComponent} from './chessground-piece.component'
 
 
 @Component({
-  selector: 'chessground-sparepieces',
+  selector: 'sparepieces',
   styles: [`.container{
                display: flex;
                padding-left:0;

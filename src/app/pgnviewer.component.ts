@@ -2,26 +2,30 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {AfterViewInit} from '@angular/core'
 import {ChessGroundComponent} from './chessground.component';
 
-import { ChessGroundControlService } from './chessground-control.service';
+import { ChessGroundService } from './chessground.service';
 import { ViewerButtonBarComponent } from './viewer-buttonbar.component';
 import { PgnInputTextComponent } from './pgninputtext.component';
 import { ChessJsService } from './chessjs.service';
 import { PgnService } from './pgn.service';
 
 @Component({
-  selector: 'chessground-pgnviewer',
-  styles: [` `],
-  template: `
+  selector: 'pgnviewer',
+  styles: [`.container {
+  display: flex;
+  
+}
+ `],
+  template: `   <div class="container">
                 <chessground [width]="boardwidth" [height]="boardheight" [pieces]="pieces" [orientation]="orientation"></chessground>
                 <viewer-buttonbar (do)="onButtonBarDo($event)" ></viewer-buttonbar>
                 <pgninputtext (onpgnsubmit)="onPgnSubmit($event)"></pgninputtext>
-                
+                </div>
              `,
   directives: [ChessGroundComponent,ViewerButtonBarComponent,PgnInputTextComponent],
-  providers: [ChessGroundControlService, ChessJsService,PgnService]
+  providers: [ChessGroundService, ChessJsService,PgnService]
 
 })
-export class ChessGroundPgnViewerComponent implements AfterViewInit {
+export class PgnViewerComponent implements AfterViewInit {
 
   private pgn: string = ``;
        
@@ -32,9 +36,7 @@ export class ChessGroundPgnViewerComponent implements AfterViewInit {
   private pieces: string = "merida";
   orientation:string="white";
 
-  
-
-  constructor(private cgctrl: ChessGroundControlService, private chessjsservice: ChessJsService, private pgnservice: PgnService) {
+  constructor(private cgctrl: ChessGroundService, private chessjsservice: ChessJsService, private pgnservice: PgnService) {
   
   }
   

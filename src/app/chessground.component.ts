@@ -1,7 +1,7 @@
 
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {AfterViewInit} from '@angular/core'
-import { ChessGroundControlService } from './chessground-control.service';
+import { ChessGroundService } from './chessground.service';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class ChessGroundComponent implements AfterViewInit {
     ground: any;
     private defaultOptions: any;
 
-    constructor(private cgctrl: ChessGroundControlService) {
+    constructor(private cgctrl: ChessGroundService) {
 
     }
 
