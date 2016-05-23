@@ -29,11 +29,11 @@ import {GlyphButtonComponent} from './glyphbutton.component';
  })
 export class PgnInputTextComponent { 
     
-   @Output() onpgnsubmit: EventEmitter<any> = new EventEmitter();
+   @Output() pgnsubmit: EventEmitter<any> = new EventEmitter();
     
    onPgnSubmit(value)
    {
-      this.onpgnsubmit.emit({pgn:value});
+      this.pgnsubmit.emit({pgn:value});
    }
 }
 
