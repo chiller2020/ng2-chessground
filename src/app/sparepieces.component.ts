@@ -20,7 +20,7 @@ import {ChessGroundPieceComponent} from './chessground-piece.component'
   directives: [ChessGroundPieceComponent]
 
 })
-export class ChessGroundSparePiecesComponent {
+export class SparePiecesComponent {
 
   @Input() width: number = 0;
   @Input() height: number = 0;
