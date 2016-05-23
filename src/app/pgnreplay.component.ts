@@ -1,5 +1,5 @@
 
-import {Component} from '@angular/core';
+import {Component,Output,EventEmitter} from '@angular/core';
 import { ViewerButtonBarComponent } from './viewer-buttonbar.component';
 import { PgnInputTextComponent } from './pgninputtext.component';
 
@@ -9,12 +9,13 @@ import { PgnInputTextComponent } from './pgninputtext.component';
     styles: [`
 `],
     template: ` <viewer-buttonbar (do)="onButtonBarDo($event)" ></viewer-buttonbar>
-                <pgninputtext (onpgnsubmit)="onPgnSubmit($event)"></pgninputtext>
+                <pgninputtext (pgnsubmit)="onPgnSubmit($event)"></pgninputtext>
                 `,
     directives: [PgnInputTextComponent,ViewerButtonBarComponent]
 })
 export class PgnReplayComponent { 
     
+    @Output() pgnsubmit: EventEmitter<any> = new EventEmitter();
     
     onButtonBarDo(event)
     {
@@ -23,7 +24,7 @@ export class PgnReplayComponent {
     
     onPgnSubmit(event)
     {
-        
+       this.pgnsubmit.emit({pgn:event.pgn});
     }
     
 }
