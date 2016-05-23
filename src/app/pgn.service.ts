@@ -31,6 +31,11 @@ export class PgnService {
        let result :string = arrayOfLines.join('\n');
        
        return result;
+    }
+    
+    getMovesArray()
+    {
+        
     }          
 
 } 
