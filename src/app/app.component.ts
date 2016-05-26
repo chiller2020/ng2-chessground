@@ -6,8 +6,6 @@ import {PgnViewerComponent} from './pgnviewer.component'
 
 @Component({
     selector: 'app',
-    styles: [`
-`],
     template: ` <pgnviewer [style.width]="'100%'" [style.height]="'100%'"></pgnviewer>
                 `,
     directives: [PgnViewerComponent, BoardEditorComponent]

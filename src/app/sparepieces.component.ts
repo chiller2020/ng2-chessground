@@ -4,12 +4,7 @@ import {ChessGroundPieceComponent} from './chessground-piece.component'
 
 @Component({
   selector: 'sparepieces',
-  styles: [`.container{
-               display: flex;
-               padding-left:0;
-             }
-    `],
-  template: `<div class="container" [style.width.px]="width" [style.height.px]="height" >
+  template: `<div class="sparepiecescontainer" [style.width.px]="width" [style.height.px]="height" >
                 <chessground-piece (mousedown)="onMouseDown($event,'pawn')" [color]="color" [piece]="'pawn'" [height]="height" [width]="width" ></chessground-piece>
                 <chessground-piece (mousedown)="onMouseDown($event,'bishop')" [color]="color" [piece]="'bishop'" [height]="height" [width]="height" ></chessground-piece>
                 <chessground-piece (mousedown)="onMouseDown($event,'knight')" [color]="color" [piece]="'knight'" [height]="height" [width]="height" ></chessground-piece>

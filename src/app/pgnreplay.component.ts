@@ -6,11 +6,10 @@ import { PgnInputTextComponent } from './pgninputtext.component';
 
 @Component({
     selector: 'pgnreplay',
-    styles: [`
-`],
-    template: ` <viewer-buttonbar (do)="onButtonBarDo($event)" ></viewer-buttonbar>
+    template: ` <div class="pgnreplaycontainer">
+                <viewer-buttonbar (do)="onButtonBarDo($event)" ></viewer-buttonbar>
                 <pgninputtext (pgnsubmit)="onPgnSubmit($event)"></pgninputtext>
-                `,
+                </div>`,
     directives: [PgnInputTextComponent,ViewerButtonBarComponent]
 })
 export class PgnReplayComponent { 

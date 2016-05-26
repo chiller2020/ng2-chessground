@@ -11,12 +11,7 @@ import { PgnService } from './pgn.service';
 
 @Component({
   selector: 'pgnviewer',
-  styles: [`.container {
-  display: flex;
-  
-}
- `],
-  template: `   <div class="container">
+  template: `   <div class="pgnviewercontainer">
                 <chessground [width]="boardwidth" [height]="boardheight" [pieces]="pieces" [orientation]="orientation"></chessground>
                 <pgnreplay (pgnsubmit)="onPgnSubmit($event)"></pgnreplay>
                 </div>
@@ -33,8 +28,8 @@ export class PgnViewerComponent implements AfterViewInit {
   
   
   
-  boardwidth:string = '640px';
-  boardheight:string = '640px';
+  boardwidth:string = '99vh';
+  boardheight:string = '99vh';
   private pieces: string = "merida";
   orientation:string="white";
   scalachessjssubscription: any;

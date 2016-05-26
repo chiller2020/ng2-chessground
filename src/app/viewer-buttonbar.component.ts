@@ -6,13 +6,7 @@ import {GlyphButtonComponent} from './glyphbutton.component'
 
 @Component({
     selector: 'viewer-buttonbar',
-    styles:[`.container{
-               display: flex;
-               padding-left:0;
-             }
-        
-    }`],
-    template: `<div [style.width.px]="width" class="container">
+    template: `<div [style.width.px]="width" class="viewerbuttonbarcontainer">
                   <glyphbutton (click)="onClick($event,'sb')" [name]="'step-backward'"></glyphbutton>
                   <glyphbutton (click)="onClick($event,'fb')" [name]="'fast-backward'"></glyphbutton>
                   <glyphbutton (click)="onClick($event,'ff')" [name]="'fast-forward'"></glyphbutton>

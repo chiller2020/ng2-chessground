@@ -3,29 +3,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector:'chessground-piece',
-    styles:[`.container{
-               display: flex;
-               padding-left:0;
-              
-             }
-             .piece{
-               width:inherit;
-               height:inherit; 
-               position:relative;
-               display:inline-block;
-               left:0%;
-              
-             }
-             .is3d
-             { 
-               height:140%;
-               width:100%;
-               top:-25% 
-             }
-             
-    `],
-    template:`<div [ngClass]="[pieces]" [style.width.px]="height" [style.height.px]="height" class="piece">
-                <piece  [style.width.px]="height" [style.height.px]="height" [ngClass]="[color,piece]" class="piece"></piece>
+    template:`<div [ngClass]="[pieces]" [style.width.px]="height" [style.height.px]="height" class="chessgroundpiece">
+                <piece  [style.width.px]="height" [style.height.px]="height" [ngClass]="[color,piece]" class="chessgroundpiece"></piece>
               </div>`, 
     
 })

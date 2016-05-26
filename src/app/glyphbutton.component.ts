@@ -4,9 +4,9 @@ import {Component, Input,Output,OnInit,EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'glyphbutton',
-  styles:[`.block{display:inline-flex;}`],
+  styles:[],
   template: `
-             <button  (click)="onClick($event)" [style.width]="width" [style.height]="height"><i [style.font-size]="fontsize" class="block glyphicon" [ngClass]="[iconclass]"></i></button>`,
+             <button  (click)="onClick($event)" [style.width]="width" [style.height]="height"><i [style.font-size]="fontsize" class="glyphicon" [ngClass]="[iconclass]"></i></button>`,
 
 })
 export class GlyphButtonComponent implements OnInit {
